@@ -62,10 +62,10 @@ if True:
             left = parsed[i]['faceRectangle']['left']
             top = parsed[i]['faceRectangle']['top']
             width = parsed[i]['faceRectangle']['width']
-            #trimming.trimming(img,top,left,height,width,args[1],i)
+            trimming.trimming(img,top,left,height,width,args[1],i)
 
         A = {'x':parsed[0][u'faceRectangle'][u'left']}
-        #A[u'drunk'] = drunkjudge.drunkjudge(file_name + "0.png")
+        A[u'drunk'] = drunkjudge.drunkjudge(file_name + "0.png")
         A[u'anger'] = parsed[0][u'faceAttributes'][u'emotion'][u'anger']
         A[u'contempt'] = parsed[0][u'faceAttributes'][u'emotion'][u'contempt']
         A[u'disgust'] = parsed[0][u'faceAttributes'][u'emotion'][u'disgust']
@@ -77,7 +77,7 @@ if True:
         A[u'exposure'] = parsed[0][u'faceAttributes'][u'exposure'][u'value']
 
         B = {'x':parsed[1][u'faceRectangle'][u'left']}
-        #B[u'drunk'] = drunkjudge.drunkjudge(file_name + "1.png")
+        B[u'drunk'] = drunkjudge.drunkjudge(file_name + "1.png")
         B[u'contempt'] = parsed[1][u'faceAttributes'][u'emotion'][u'contempt']
         B[u'disgust'] = parsed[1][u'faceAttributes'][u'emotion'][u'disgust']
         B[u'fear'] = parsed[1][u'faceAttributes'][u'emotion'][u'fear']
