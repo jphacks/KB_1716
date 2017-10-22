@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Emotional Cocktail</title>
+  <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../stylesheet2.css">
+  <script type="text/javascript" src="../jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="../jquery.uploadThumbs.js"></script>
+  <script>
+  $(function() {
+    // jQuery Upload Thumbs 
+    $('form input:file').uploadThumbs({
+        position  : '#preview',    // any: arbitrarily jquery selector
+        alternate : '.alt'         // selecter for alternate view input file names
+    });
+  });
+</script>
+
+</head>
+<body>
+<header>
+    <h1>Emotional Cocktail</h1>
+</header>
+   <section class="image-content-result">
+      <img src="../img/test.png" class="display-image"/>
+  </section>
+  <section id="first-person" class="person">
+      <div class="intro-text">左側にいるあなたにオススメなのは…</div>
+    <div class="photo">
+    <img src="../img/wine.png"/>
+    </div>
+    <div class="name">ワイン</div>
+      <div class="detail-text">あああああああああいいいいいいいいいいううううううううううええええええええええオオおおおおおおおお</div>
+  </section>
+  <section id="second-person" class="person">
+      <div class="intro-text">右側にいるあなたにオススメなのは…</div>
+    <div class="photo">
+    <img src="../img/cocktail.png"/>
+    </div>
+    <div class="name">オーロラ</div>
+      <div class="detail-text">dsajsadhjfkl;ashjbfkl;pasjkbhfkl;asdkjbhfklo;asldo;f　あshfっdfふいじゃsk；dfはsjkl；klf;sabjfklsfk jls</div>
+  </section>
+    <section id="button-retry">Retry</section>
+
+      <footer>&copy; FACESAKE All Rights Reserved at JPHacks2017 in Kobe</footer>
+</body>
+</html>

@@ -1,0 +1,131 @@
+html{
+    height: 100%;
+    margin: 0;
+    background-color: #000062;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+}
+
+section {
+  margin: 0;
+}
+
+header{
+    width: 100%;
+    overflow: hidden;
+    background-color: #000062;
+    padding: 1px 0px;
+    z-index: 10;
+    font-family: 'Dancing Script', cursive;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+
+}
+
+header h1{
+    text-align: center;
+    font-size: 30px;
+    color:#d9d998;
+    
+}
+
+
+/* image-content */
+.image-content {
+  background-color: #999933;
+    position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+
+}
+
+.image-content h2 {
+}
+
+.image-content box{
+  }
+
+.button-content{
+    height: 18vh;
+    background-color: #d9d998;
+    padding-top: 70vh;
+}
+
+label{
+
+}
+
+
+
+.button {
+  text-align: center;
+  width:300px;
+  height:150px;
+  margin-top: 2vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  max-height: 200px;
+  max-width: 300px;
+}
+
+
+#preview {
+  text-align: center;
+  margin: 0;
+}
+
+#preview img{
+    max-height: 60vh;
+    max-width: 80vw;
+    
+}
+
+form img.thumb {
+    height: 50vh;
+    vertical-align:bottom;
+}
+
+form .upload{
+    text-align: center;
+}
+
+form .upload label {
+    display:inline-block;
+    position:relative;
+    overflow:hidden;
+    vertical-align:middle;
+  }
+
+form .upload label input[type="file"] {
+    position:absolute;
+    top:0;
+    right:0;
+    cursor:pointer;
+    font-size:200px;
+    opacity:0.01;
+    -ms-filter:"alpha(opacity=1)";
+    }
+
+form .upload .alt  {
+    padding: 4px;
+    text-align: center;
+
+  }
+
+/* footer */
+footer {
+  text-align: center;
+  font-size: 20px;
+  color:#d9d998;
+  background: #000062;
+  height: 3vh;
+  padding-top:1vh;
+  padding-bottom:1vh;
+  
+}

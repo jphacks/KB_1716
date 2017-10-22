@@ -1,6 +1,9 @@
 import httplib, urllib, base64, json
 import trimming
+import sys
 import cv2
+
+args = sys.argv
 
 ###############################################
 #### Update or verify the following values. ###
@@ -33,13 +36,10 @@ params = urllib.urlencode({
 })
 
 # The URL of a JPEG image to analyze.
-#body = "{'url':'http://www.aflo.com/creative/people/img/mainImg.jpg'}"
-body = open("../img/mainImg.jpg",'rb')
-print(type(body))
-img = cv2.imread( "../img/mainImg.jpg" )
-print(type(img))
-#cv2.imshow("color",img)
-#cv2.waitKey(0)
+#body = "{'url':'http:q//www.aflo.com/creative/people/img/mainImg.jpg'}"
+body = open(args[1],'rb')
+
+img = cv2.imread(args[1] )
 
 try:
     # Execute the REST API call and get the response.
@@ -51,19 +51,17 @@ try:
     # 'data' contains the JSON data. The following formats the JSON data for display.
     parsed = json.loads(data)
     for i in range(len(parsed)):
-    	print('-------------------------')
+        print('-------------------------')
         height = parsed[i]['faceRectangle']['height']
         left = parsed[i]['faceRectangle']['left']
         top = parsed[i]['faceRectangle']['top']
         width = parsed[i]['faceRectangle']['width']
-    	print('height{0}:{1}'.format(i,parsed[i]['faceRectangle']['height']))
-    	print('height{0}:{1}'.format(i,parsed[i]['faceRectangle']['left']))
-    	print('height{0}:{1}'.format(i,parsed[i]['faceRectangle']['top']))
-    	print('height{0}:{1}'.format(i,parsed[i]['faceRectangle']['width']))
-        trimming.trimming(img,top,left,height,width,i)
+    	print('height{0}:{1}'.format(i,height))
+    	print('left{0}:{1}'.format(i,left))
+    	print('top{0}:{1}'.format(i,top))
+    	print('width{0}:{1}'.format(i,width))
+        trimming.trimming(img,top,left,height,width,args[1],i)
     	print('-------------------------')
-    #print ("Response:")
-    #print (json.dumps(parsed, sort_keys=True, indent=2))
     conn.close()
 
 except Exception as e:
