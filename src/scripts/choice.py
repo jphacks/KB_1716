@@ -1,3 +1,4 @@
+
 # coding:utf-8
 import cv2
 
@@ -16,7 +17,7 @@ def choice(A, B):
 # @brief 最も数値の高い感情を求める
 #
 # それぞれの感情の番号
-#  * happiness ->  0
+#  * anger     ->  0
 #  * neutral   ->  1
 #  * sadness   ->  2
 #  * surprise  ->  3
@@ -34,7 +35,7 @@ def max_emotion(emt):
             continue
         if value > max_val:
             max_val = value
-            if key == 'happiness':
+            if key == 'anger':
                 max_emt = 0
             elif key == 'neutral':
                 max_emt = 1
@@ -58,10 +59,9 @@ def recommend(emt):
     max_emt = max_emotion(emt)
     
     # 感情に合わせたカクテルを選ぶ
-    #if emt['drunk'] < 0:
-    #    sake = u'water'
-    #elif max_emt < 0:
-    if max_emt < 0:
+    if emt['drunk'] < 0:
+        sake = u'water'
+    elif max_emt < 0:
         sake = u'izakaya'
     elif max_emt == 0:
         sake = u'red'
