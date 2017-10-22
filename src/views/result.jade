@@ -4,9 +4,9 @@ html(lang='ja')
     meta(charset='UTF-8')
     title Emotional Cocktail
     link(href='https://fonts.googleapis.com/css?family=Dancing+Script', rel='stylesheet', type='text/css')
-    link(rel='stylesheet', href='../stylesheet2.css')
-    script(type='text/javascript', src='../jquery-1.9.1.js')
-    script(type='text/javascript', src='../jquery.uploadThumbs.js')
+    link(rel='stylesheet', href='/stylesheets/stylesheet2.css')
+    script(type='text/javascript', src='/javascript/jquery-1.9.1.js')
+    script(type='text/javascript', src='/javascript/jquery.uploadThumbs.js')
     script.
       $(function() {
       // jQuery Upload Thumbs
@@ -19,19 +19,20 @@ html(lang='ja')
     header
       h1 Emotional Cocktail
     section.image-content-result
-      img.display-image(src='../img/test.png')
+      img.display-image(src='#{file}')
     section#first-person.person
       .intro-text 左側にいるあなたにオススメなのは…
       .photo
-        img(src='../img/wine.png')
-      .name ワイン
-      .detail-text あああああああああいいいいいいいいいいううううううううううええええええええええオオおおおおおおおお
+        img(src='#{leftUrl}')
+      .name #{left}
+      .detail-text #{leftText}
     section#second-person.person
       .intro-text 右側にいるあなたにオススメなのは…
       .photo
-        img(src='../img/cocktail.png')
-      .name オーロラ
-      .detail-text
-        | dsajsadhjfkl;ashjbfkl;pasjkbhfkl;asdkjbhfklo;asldo;f　あshfっdfふいじゃsk；dfはsjkl；klf;sabjfklsfk jls
-    section#button-retry Retry
+        img(src='#{rightUrl}')
+      .name #{right}
+      .detail-text #{rightText}
+    section#button-retry
+      a(href='/')
+        .retry Retry
     footer © FACESAKE All Rights Reserved at JPHacks2017 in Kobe

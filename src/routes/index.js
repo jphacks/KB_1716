@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 var multer = require('multer');
 var multerStorage = multer.diskStorage({
   destination: function (req, file ,cb) {
-    cb(null, './uploads');
+    cb(null, './public/uploads');
   },
   filename: function (req, file, cb) {
     cb(null, uuid.v4());
@@ -28,41 +28,51 @@ router.get('/', function(req, res, next) {
   res.sendfile('./views/index.html');
 });
 
-router.post('/', upload.single('upload'), function(req, res) {
-  console.log(req.file);
-  var COMMAND = `python ./scripts/facetest.py ./uploads/${req.file.filename}`;
+router.post('/', upload.single('upload'), function(req, res_) {
+  var COMMAND = `python ./scripts/facetest.py ./public/uploads/${req.file.filename}`;
 
   var result = execSync(COMMAND).toString().split(' ');
 
   if(result[0] === '-1'){
-    console.log(result);
-    res.render('error', {error: result[1]}); //人数によって変動
+    res_.render('error', {error: result[1]}); //人数によって変動
   }else{
-    console.log(result);
-    connection.connect(function(err) {
-      if(err){
-        console.error('error connecting: ' + err.stack);
-        return;
-      }
-      console.log('connected as id ' + connection.threadId);
-    });
-    connection.query('SELECT * FROM sakeDB.cocktailTB WHERE color = \"' + result[0] + `\"`, function(err,res,fields){
+    //connection.connect(function(err) {
+    //  if(err){
+    //    console.error('error connecting: ' + err.stack);
+    //    return;
+    //  }
+    //  console.log('connected as id ' + connection.threadId);
+    //});
+    connection.query('SELECT * FROM sakeDB.hogeTB WHERE color = \"' + result[0] + `\"`, function(err,res,fields){
       var left = res[0]["name"];
-    });
-    connection.query('SELECT * FROM sakeDB.cocktailTB WHERE color = \"' + result[1] + `\"`, function(err,res,fields){
-	console.log(result[1]);
-	console.log(res[0]);
-      var right = res[0]["name"];
-    });
-    res.render('result', {
-      title: 'result',
-      left: left,
-      right: right
-    });
-    fs.unlink(req.file, function (err){
-      console.log(err);
+      var leftUrl = res[0]["srcUrl"];
+      var leftText = res[0]["messe"];
+	    connection.query('SELECT * FROM sakeDB.hogeTB WHERE color = \"' + result[1] + `\"`, function(err,res,fields){
+	      var right = res[0]["name"];
+	      var rightUrl = res[0]["srcUrl"];
+	      var rightText = res[0]["messe"];
+		connection.query("SELECT * FROM sakeDB.hogeTB", function(err, res, fields){
+			console.log(leftText);
+			console.log(rightText);
+		    res_.render('result', {
+		      title: 'result',
+		      file: `/uploads/${req.file.filename}`,
+		      left: left,
+		      leftUrl: leftUrl,
+                      leftText: leftText,
+		      right: right,
+		      rightUrl: rightUrl,
+		      rightText: rightText
+		    });
+		    //fs.unlink(req.file, function (err){
+		    //  console.log(err);
+		    //});
+		});
+	    });
     });
   }
+
+
 });
 
 module.exports = router;

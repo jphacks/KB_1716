@@ -38,5 +38,3 @@ def drunkjudge(file_name):
 		return 0
 	else :
 		return 1
-
-
