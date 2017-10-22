@@ -43,26 +43,26 @@ router.post('/', upload.single('upload'), function(req, res_) {
     //  }
     //  console.log('connected as id ' + connection.threadId);
     //});
-    connection.query('SELECT * FROM sakeDB.cocktailTB WHERE color = \"' + result[0] + `\"`, function(err,res,fields){
+    connection.query('SELECT * FROM sakeDB.hogeTB WHERE color = \"' + result[0] + `\"`, function(err,res,fields){
       var left = res[0]["name"];
       var leftUrl = res[0]["srcUrl"];
-      var leftText;
-	    connection.query('SELECT * FROM sakeDB.cocktailTB WHERE color = \"' + result[1] + `\"`, function(err,res,fields){
+      var leftText = res[0]["messe"];
+	    connection.query('SELECT * FROM sakeDB.hogeTB WHERE color = \"' + result[1] + `\"`, function(err,res,fields){
 	      var right = res[0]["name"];
 	      var rightUrl = res[0]["srcUrl"];
-	      var rightText;
-		connection.query("SELECT * FROM sakeDB.cocktailTB", function(err, res, fields){
-			console.log(left);
-			console.log(leftUrl);
-			console.log(right);
-			console.log(rightUrl);
+	      var rightText = res[0]["messe"];
+		connection.query("SELECT * FROM sakeDB.hogeTB", function(err, res, fields){
+			console.log(leftText);
+			console.log(rightText);
 		    res_.render('result', {
 		      title: 'result',
 		      file: `/uploads/${req.file.filename}`,
 		      left: left,
 		      leftUrl: leftUrl,
+                      leftText: leftText,
 		      right: right,
-		      rightUrl: rightUrl
+		      rightUrl: rightUrl,
+		      rightText: rightText
 		    });
 		    //fs.unlink(req.file, function (err){
 		    //  console.log(err);
