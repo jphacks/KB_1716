@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
     res.sendfile('./views/index.html');
 });
 
-router.post('/', upload.single('upload'), function(req, res_) {
+router.post('/', upload.single('upload'), function(req_, res_) {
     var COMMAND = `python ./scripts/facetest.py ./public/uploads/${req.file.filename}`;
 
     var result = execSync(COMMAND).toString().split(' ');
@@ -59,9 +59,9 @@ router.post('/', upload.single('upload'), function(req, res_) {
               rightUrl: rightUrl,
               rightText: rightText
             });
-          fs.unlink(req.file, function (err){
-            console.log(err);
-          });
+            fs.unlink('/uploads/' + req_.file, function (err){
+              console.log(err);
+            });
           });
         });
       });
