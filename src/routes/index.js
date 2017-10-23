@@ -37,15 +37,16 @@ router.post('/', upload.single('upload'), function(req_, res_) {
       console.log("test");
       var QUERY_BF = 'SELECT * FROM sakeDB.hogeTB WHERE color = \"';
       var QUERY_AF = '\"';
+      var rnd = Math.floor( Math.random() * 4 );
       connection.query(QUERY_BF + result[0] + QUERY_AF, function(err,res,fields){
         console.log(res);
-        var left = res[0]["name"];
-        var leftUrl = res[0]["srcUrl"];
-        var leftText = res[0]["messe"];
+        var left = res[rnd]["name"];
+        var leftUrl = res[rnd]["srcUrl"];
+        var leftText = res[rnd]["messe"];
         connection.query(QUERY_BF + result[1] + QUERY_AF, function(err,res,fields){
-          var right = res[0]["name"];
-          var rightUrl = res[0]["srcUrl"];
-          var rightText = res[0]["messe"];
+          var right = res[rnd]["name"];
+          var rightUrl = res[rnd]["srcUrl"];
+          var rightText = res[rnd]["messe"];
           connection.query("SELECT * FROM sakeDB.hogeTB", function(err, res, fields){
             console.log(leftText);
             console.log(rightText);
