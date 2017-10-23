@@ -24,6 +24,9 @@ var upload = multer({ storage: multerStorage });
 
 router.get('/', function(req, res, next) {
     res.sendfile('./views/index.html');
+    fs.unlink('./public/uploads/*'', function (err){
+      console.log(err);
+    });
 });
 
 router.post('/', upload.single('upload'), function(req_, res_) {
@@ -56,10 +59,6 @@ router.post('/', upload.single('upload'), function(req_, res_) {
               right: right,
               rightUrl: rightUrl,
               rightText: rightText
-            }, function () {
-              fs.unlink(`./public/uploads/${req_.file.filename}`, function (err){
-                console.log(err);
-              });
             });
           });
         });
