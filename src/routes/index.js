@@ -56,9 +56,10 @@ router.post('/', upload.single('upload'), function(req_, res_) {
               right: right,
               rightUrl: rightUrl,
               rightText: rightText
-            });
-            fs.unlink(`/uploads/${req_.file.filename}`, function (err){
-              console.log(err);
+            }, function () {
+              fs.unlink(`./public/uploads/${req_.file.filename}`, function (err){
+                console.log(err);
+              });
             });
           });
         });
