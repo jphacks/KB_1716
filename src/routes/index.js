@@ -34,7 +34,7 @@ router.post('/', upload.single('upload'), function(req, res_) {
   var result = execSync(COMMAND).toString().split(' ');
 
   if(result[0] === '-1'){
-    res_.render('error', {error: result[1]}); //人数によって変動
+    res_.render('error2', {error: result[1]}); //人数によって変動
   }else{
     //connection.connect(function(err) {
     //  if(err){

@@ -33,6 +33,8 @@ def max_emotion(emt):
             continue
         if key == 'drunk':
             continue
+        if key == 'happiness':
+            continue
         if value > max_val:
             max_val = value
             if key == 'anger':
