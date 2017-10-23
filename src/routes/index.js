@@ -24,9 +24,11 @@ var upload = multer({ storage: multerStorage });
 
 router.get('/', function(req, res, next) {
     res.sendfile('./views/index.html');
-    fs.unlink('./public/uploads/*'', function (err){
-      console.log(err);
-    });
+
+    var targetRemoveFiles = fs.readdirSync('./public/uploads');
+    for (var file in targetRemoveFiles) {
+      fs.unlinkSync('./public/uploads/' + targetRemoveFiles[file]);
+    }
 });
 
 router.post('/', upload.single('upload'), function(req_, res_) {
