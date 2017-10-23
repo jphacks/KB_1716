@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', upload.single('upload'), function(req_, res_) {
-    var COMMAND = `python ./scripts/facetest.py ./public/uploads/${req.file.filename}`;
+    var COMMAND = `python ./scripts/facetest.py ./public/uploads/${req_.file.filename}`;
 
     var result = execSync(COMMAND).toString().split(' ');
 
@@ -51,7 +51,7 @@ router.post('/', upload.single('upload'), function(req_, res_) {
             console.log(rightText);
             res_.render('result', {
               title: 'result',
-              file: `/uploads/${req.file.filename}`,
+              file: `/uploads/${req_.file.filename}`,
               left: left,
               leftUrl: leftUrl,
               leftText: leftText,
