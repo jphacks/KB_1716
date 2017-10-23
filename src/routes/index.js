@@ -34,12 +34,10 @@ router.post('/', upload.single('upload'), function(req_, res_) {
     if(result[0] === '-1'){
       res_.render('error2', {error: result[1]});
     }else{
-      console.log("test");
       var QUERY_BF = 'SELECT * FROM sakeDB.hogeTB WHERE color = \"';
       var QUERY_AF = '\"';
       connection.query(QUERY_BF + result[0] + QUERY_AF, function(err,res,fields){
         var rnd = Math.floor( Math.random() * 4 );
-        console.log(res);
         var left = res[rnd]["name"];
         var leftUrl = res[rnd]["srcUrl"];
         var leftText = res[rnd]["messe"];
@@ -61,7 +59,7 @@ router.post('/', upload.single('upload'), function(req_, res_) {
               rightUrl: rightUrl,
               rightText: rightText
             });
-            fs.unlink('/uploads/' + req_.file, function (err){
+            fs.unlink('/uploads/' + req_.file.name, function (err){
               console.log(err);
             });
           });
