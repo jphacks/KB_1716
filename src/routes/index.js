@@ -34,9 +34,11 @@ router.post('/', upload.single('upload'), function(req, res_) {
     if(result[0] === '-1'){
       res_.render('error2', {error: result[1]});
     }else{
+      console.log("test");
       var QUERY_BF = 'SELECT * FROM sakeDB.hogeTB WHERE color = \"';
-      var QUERY_AF = `\"`;
+      var QUERY_AF = '\"';
       connection.query(QUERY_BF + result[0] + QUERY_AF, function(err,res,fields){
+        console.log(res);
         var left = res[0]["name"];
         var leftUrl = res[0]["srcUrl"];
         var leftText = res[0]["messe"];
