@@ -33,7 +33,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/', upload.single('upload'), function(req_, res_) {
     var COMMAND = `python ./scripts/facetest.py ./public/uploads/${req_.file.filename}`;
-
     var result = execSync(COMMAND).toString().split(' ');
 
     if(result[0] === '-1'){
