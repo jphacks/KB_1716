@@ -47,8 +47,6 @@ router.post('/', upload.single('upload'), function(req_, res_) {
           var rightUrl = res[rnd]["srcUrl"];
           var rightText = res[rnd]["messe"];
           connection.query("SELECT * FROM sakeDB.hogeTB", function(err, res, fields){
-            console.log(leftText);
-            console.log(rightText);
             res_.render('result', {
               title: 'result',
               file: `/uploads/${req_.file.filename}`,
@@ -59,7 +57,7 @@ router.post('/', upload.single('upload'), function(req_, res_) {
               rightUrl: rightUrl,
               rightText: rightText
             });
-            fs.unlink('/uploads/' + req_.file.filename, function (err){
+            fs.unlink(`/uploads/${req_.file.filename}`, function (err){
               console.log(err);
             });
           });
